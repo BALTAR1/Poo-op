@@ -1,0 +1,43 @@
+{% extends "base_template.html" %}
+
+{% block title %}Informe{% endblock %}
+
+{% block content %}
+<hr>
+<form action="">
+    <h4 style="color: blue;">Informe de las asistencias</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Clases aula presente</th>
+                <th>Clases educación física presente</th>
+                <th>Clases aula justificadas</th>
+                <th>Clases aula injustificadas</th>
+                <th>Clases Educación Física justificadas</th>
+                <th>Clases Educación física injustificadas</th>
+                <th>Total de inasistencias</th>
+                <th>Informe detallado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante, aulaP, aulaJ, aulaIn, fisP, fisJ, fisIn in todo %}
+                {% set total = aulaJ + aulaIn + fisJ + fisIn %}
+                <tr>
+                    <td>{{ estudiante.nombre }} {{ estudiante.apellido }}</td>
+                    <td>{{ aulaP }}</td>
+                    <td>{{ fisP }}</td>
+                    <td>{{ aulaJ }}</td>
+                    <td>{{ aulaIn }}</td>
+                    <td>{{ fisJ }}</td>
+                    <td>{{ fisIn }}</td>
+                    <td>{{ total }}</td>
+                    <td><a href="{{ url_for('informe_detallado', idestudiante=estudiante.id) }}" style="color: green;">Informe Detallado</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <button type="submit" style="background-color: red; color: white;">Regresar</button>
+</form>
+{% endblock %}

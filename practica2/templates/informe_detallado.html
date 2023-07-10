@@ -1,0 +1,42 @@
+{% extends "base_template.html" %}
+
+{% block title %}Informe Detallado{% endblock %}
+
+{% block content %}
+<hr>
+<form action="">
+    <h3>{{ estudiante.nombre }} {{ estudiante.apellido }}</h3>
+    <h5>Faltas</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Código de Clase</th>
+                <th>Asistió</th>
+                <th>Justificación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asistencia in asistencias %}
+                <tr>
+                    <td>{{ asistencia.id }}</td>
+                    <td>{{ asistencia.fecha }}</td>
+                    <td>{{ asistencia.codigoclase }}</td>
+                    <td>
+                        {% if asistencia.asistio == "s" %}
+                            {{ "Si" }}
+                        {% else %}
+                            {{ "No" }}
+                        {% endif %}
+                    </td>
+                    <td>{{ asistencia.justificacion }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+<footer>
+    <a href="{{ url_for('pagina_anterior') }}">Regresar</a>
+</footer>
+{% endblock %}

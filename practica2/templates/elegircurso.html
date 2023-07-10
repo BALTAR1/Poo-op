@@ -1,0 +1,20 @@
+{% extends "base_template.html" %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block content %}
+<hr>
+<h4>Cursos de {{ usuario.nombre }} {{ usuario.apellido }}</h4>
+<form action="{{ url_for('elegircurso') }}" method="post">
+    <label for="curso">Seleccione un curso:</label>
+    <select name="curso" id="curso">
+        {% for curso in cursos %}
+            <option value="{{ curso.id }}">{{ curso.id }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Continuar">
+</form>
+<footer>
+    <a href="{{ url_for('preceptor') }}">Inicio</a>
+</footer>
+{% endblock %}

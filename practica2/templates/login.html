@@ -1,0 +1,66 @@
+{% extends "base_template.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    form {
+        margin: 0 auto;
+        width: 300px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    h4 {
+        color: #333;
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<form action="{{ url_for('login') }}" method="post">
+    <hr>
+    <h4>Inicie Sesión</h4>
+    <div>
+        <input type="text" name="email" placeholder="email">
+        <label for="email"></label>
+    </div>
+    <div>
+        <input type="password" name="clave" placeholder="Contraseña">
+        <label for="clave"></label>
+    </div>
+    <select name="rol">
+        <option value="preceptor" selected>Preceptor</option>
+        <option value="padre">Padre</option>
+    </select>
+    <button type="submit">Iniciar Sesión</button>
+</form>
+{% endblock %}

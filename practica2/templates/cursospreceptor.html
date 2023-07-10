@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+
+            hr {
+                border: none;
+                border-top: 1px solid #ccc;
+                margin: 20px 0;
+            }
+
+            h4 {
+                text-align: center;
+                color: #333;
+            }
+
+            form {
+                margin: 0 auto;
+                width: 300px;
+                padding: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            select,
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            footer a {
+                text-decoration: none;
+                color: #333;
+            }
+
+            footer a:hover {
+                color: #4CAF50;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h2>Colegio San Miguel</h2>
+        </header>
+        <hr>
+        <h4>Cursos de {{ usuario.nombre }} {{ usuario.apellido }}</h4>
+        <form action="{{ url_for('cursos') }}" method="post">
+            <label for="curso">Seleccione un curso:</label>
+            <select name="curso" id="curso">
+                {% for curso in cursos %}
+                    <option value="{{ curso.id }}">{{ curso.id }}</option>
+                {% endfor %}
+            </select>
+            <label for="clase">Seleccione la clase:</label>
+            <select name="clase">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <input type="submit" value="Continuar">
+        </form>
+        <footer>
+            <a href="{{ url_for('preceptor') }}">Inicio</a>
+        </footer>
+    </body>
+</html>
